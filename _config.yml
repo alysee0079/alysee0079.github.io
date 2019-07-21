@@ -8,7 +8,7 @@
 # Site settings
 title: F.rozen
 # brief-intro: Front-end Dev Engineer
-baseurl: "/alysee.github.io/" # the subpath of your site, e.g. /blog
+baseurl: "/alysee.github.io" # the subpath of your site, e.g. /blog
 url: "https://alysee0079.github.io" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
