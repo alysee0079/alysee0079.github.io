@@ -1,0 +1,62 @@
+---
+layout: post
+title:  "nginx一些基本功能"
+categories: nginx
+tags:  nginx 服务器
+---
+
+## 启动nginx
+
+有很多种方法启动nginx
+
+(1)直接双击nginx.exe，双击后一个黑色的弹窗一闪而过
+
+(2)打开cmd命令窗口，切换到nginx解压目录下，输入命令 {% highlight ruby %} nginx.exe {% endhighlight %}或者 {% highlight ruby %} start nginx {% endhighlight %} ，回车即可
+
+3.检查nginx是否启动成功
+
+直接在浏览器地址栏输入网址 http://localhost:80，回车，出现以下页面说明启动成功
+![img](https://alysee0079.github.io/my-picture/githubPage/p1.png)
+
+## 重启
+
+{% highlight ruby %}
+nginx -s reload
+{% endhighlight %}
+
+## 关闭nginx
+
+如果使用cmd命令窗口启动nginx，关闭cmd窗口是不能结束nginx进程的，可使用两种方法关闭nginx
+
+(1)输入nginx命令  {% highlight ruby %} nginx -s stop(快速停止nginx) {% endhighlight %}  或 {% highlight ruby %} nginx -s quit(完整有序的停止nginx) {% endhighlight %}
+
+(2)使用taskkill  {% highlight ruby %} taskkill /f /t /im nginx.exe {% endhighlight %}
+
+## 使用nginx代理服务器做负载均衡
+
+我们可以修改nginx的配置文件nginx.conf 达到访问nginx代理服务器时跳转到指定服务器的目的，即通过proxy_pass 配置请求转发地址，即当我们依然输入http://localhost:80 时，请求会跳转到我们配置的服务器
+
+![img](https://alysee0079.github.io/my-picture/githubPage/p2.png)
+
+同理，我们可以配置多个目标服务器，当一台服务器出现故障时，nginx能将请求自动转向另一台服务器，例如配置如下：
+
+![img](https://alysee0079.github.io/my-picture/githubPage/p3.png)
+
+## nginx配置静态资源
+
+ 将静态资源（如jpg|png|css|js等）放在如下配置的f:/nginx-1.12.2/static目录下，然后在nginx配置文件中做如下配置(注意：静态资源配置只能放在 location / 中)，浏览器中访问  http://localhost:80/1.png 即可访问到 f:/nginx-1.12.2/static目录下的 1.png图片
+
+![img](https://alysee0079.github.io/my-picture/githubPage/p4.png)
+
+## nginx 下配置多域名
+
+目前的配置方式方法采用多个配置文件的方法比较多
+
+在nginx安装目录...../conf下，新建 vhost 文件夹。与nginx.conf同路径了。
+
+在vhost创建你需要的多个 *.conf 的文件 ，如 video.haile.com.conf ，命名规则大多以域名的方式来命名文件。
+
+编辑 conf 文件，把我们平常放在 nginx.conf 里的 server{...} 段复制过来直接粘贴到 conf 里。
+
+在 nginx.conf 的 http{...} 段中加入 include E:/nginx-1.8.1/vhosts/*.conf; 注：这里 include 需要用到全路
+径，且文件后缀是用 conf
