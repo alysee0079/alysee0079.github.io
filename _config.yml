@@ -6,7 +6,7 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: F.rozen
+title: Scope
 # brief-intro: Front-end Dev Engineer
 baseurl: "/alysee.github.io/" # the subpath of your site, e.g. /blog
 url: "https://alysee0079.github.io" # the base hostname & protocol for your site
