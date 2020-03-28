@@ -1,9 +1,0 @@
----
-layout: post
-title:  "关于react打包后资源无法加载的问题"
-categories: react
-tags:  react 打包
----
-
-尝试在package.json里面配置:
-{% highlight ruby %} "homepage": "." {% endhighlight %}
